@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'empresa')}">
+
+<body>
+
+  <h2>
+    <th:block th:if="${empleado['new']}">Nuevo</th:block>
+    Empleado
+  </h2>
+  <form th:object="${empleado}" class="form-horizontal" method="post">
+    <input type="hidden" name="id" th:value="*{id}" />
+    <div class="form-group has-feedback">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Owner</label>
+        <div class="col-sm-10">
+          <span th:text="${empleado.empresa?.name}" />
+        </div>
+      </div>
+      <input
+        th:replace="~{fragments/inputField :: input ('Nombre', 'name', 'text')}" />
+      <input
+        th:replace="~{fragments/inputField :: input ('DNI', 'dni', 'text')}" />
+      <input
+        th:replace="~{fragments/selectField :: inpput ('Email', 'email', 'email')}" />
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button
+          th:with="text=${empleado['new']} ? 'Añadir Empleado' : 'Actualizar Empleado'"
+          class="btn btn-default" type="submit" th:text="${text}">Añadir Empleado</button>
+      </div>
+    </div>
+  </form>
+
+</body>
+
+</html>

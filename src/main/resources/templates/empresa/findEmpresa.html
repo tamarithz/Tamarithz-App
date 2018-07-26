@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'empresa')}">
+
+<body>
+
+  <h2>BUSCAR EMPRESA</h2>
+
+  <form th:object="${empresa}" th:action="@{/empresa}" method="get"
+    class="form-horizontal" id="search-empresa-form">
+    <div class="form-group">
+      <div class="control-group" id="identificadorGroup">
+        <label class="col-sm-2 control-label">CIF </label>
+        <div class="col-sm-10">
+          <input class="form-control" th:field="*{identificador}" size="30"
+            maxlength="9" /> <span class="help-inline"><div
+              th:if="${#fields.hasAnyErrors()}">
+              <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+            </div></span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Buscar Empresa</button>
+      </div>
+    </div>
+
+  </form>
+
+  <br />
+  <a class="btn btn-default" th:href="@{/empresa/new}">Añadir Empresa</a>
+
+</body>
+</html>

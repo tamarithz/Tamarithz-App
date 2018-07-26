@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'empresa')}">
+
+  <body>
+  
+  
+    <h2>Datos de la Empresa</h2>
+  
+  
+    <table class="table table-striped" th:object="${empresa}">
+      <tr>
+        <th>Nombre</th>
+        <td><b th:text="*{nombre}"></b></td>
+      </tr>
+      <tr>
+        <th>CIF</th>
+        <td><b th:text="*{identificador}"></b></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td th:text="*{direccion}" /></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td th:text="*{ciudad}" /></td>
+      </tr>
+      <tr>
+        <th>Telephone</th>
+        <td th:text="*{email}" /></td>
+      </tr>
+    </table>
+  
+    <a th:href="@{{id}/edit(id=${empresa.id})}" class="btn btn-default">Editar
+      Empresa</a>
+    <a th:href="@{{id}/empleados/new(id=${empresa.id})}" class="btn btn-default">Añadir
+      Empleado</a>
+  
+    <br />
+    <br />
+    <br />
+    <h2>Empleados e Informes</h2>
+  
+    <table class="table table-striped">
+  
+      <tr th:each="empleado : ${empresa.empleados}">
+        <td valign="top">
+          <dl class="dl-horizontal">
+            <dt>Nombre</dt>
+            <dd th:text="${empleado.nombre}" /></dd>
+          </dl>
+        </td>
+        <td valign="top">
+          <table class="table-condensed">
+            <thead>
+              <tr>
+                <th>Informe</th>
+                <th>Descripcion</th>
+              </tr>
+            </thead>
+            <tr th:each="visit : ${empleado.visits}">
+              <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
+              <td th:text="${visit?.description}"></td>
+            </tr>
+            <tr>
+              <td><a
+                th:href="@{{empresaId}/empleados/{empleadoId}/edit(empresaId=${empresa.id},empleadoId=${empleado.id})}">Editar
+                  Empleado</a></td>
+              <td><a
+                th:href="@{{empresaId}/empleados/{empleadoId}/visits/new(empresaId=${empresa.id},empleadoId=${empleado.id})}">Añadir
+                  Informe</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  
+    </table>
+  
+  </body>
+
+</html>

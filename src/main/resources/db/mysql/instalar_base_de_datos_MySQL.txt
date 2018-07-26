@@ -1,0 +1,11 @@
+================================================================================
+===        				TAMARITHZ RISK ANALYSIS REPORT - MYSQL         		 ===
+================================================================================
+
+1) Descargar e instalar la base de datos MySQL (por ejemplo, MySQL Community Server 5.1.x),
+   que puede encontrarse en: http://dev.mysql.com/downloads/. O ejecutar el archivo
+   "docker-compose.yml" desde la raíz del proyecto (si tienes docker instalado
+   localmente).
+
+2) Creala base de datos Tamaritz ejecutando los scripts "db/mysql/{schema,data}.sql"
+   (o descomentando "spring.datasource.initialize=true" en el archivo .properties).

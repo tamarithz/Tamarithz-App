@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'reports')}">
+
+<body>
+
+  <table id="report" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Referencia</th>
+        <th>Fecha</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="report : ${reports.reportList}">
+        <td th:text="${report.identificador}"></td>
+        <td th:text="${report.fecha}"></td>
+        <td><a href="#">EDITAR</a></td>
+      </tr>    
+    </tbody>
+  </table>
+</body>
+</html>
